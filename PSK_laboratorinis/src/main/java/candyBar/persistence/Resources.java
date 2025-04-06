@@ -1,4 +1,4 @@
-package lt.vu.persistence;
+package candyBar.persistence;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;

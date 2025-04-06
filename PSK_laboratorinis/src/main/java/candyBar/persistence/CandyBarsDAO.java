@@ -1,7 +1,6 @@
 package candyBar.persistence;
 
 import candyBar.entities.CandyBar;
-import candyBar.entities.Ingredient;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -11,7 +10,7 @@ import java.util.List;
 @ApplicationScoped
 public class CandyBarsDAO {
     @Inject
-    private EntityManager em;
+    private javax.persistence.EntityManager em;
     public void merge(CandyBar candyBar) {
         this.em.merge(candyBar);
     }
