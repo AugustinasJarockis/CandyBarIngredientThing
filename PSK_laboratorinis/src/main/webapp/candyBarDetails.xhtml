@@ -18,7 +18,9 @@
             <f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
             <f:selectItems value="#{candyBarDetails.getAddableIngredients()}" />
         </h:selectOneMenu>
-        <h:commandButton value="Add ingredient" actionListener="#{candyBarDetails.addIngredient}" action="index?faces-redirect=true"/>
+        <h:commandButton value="Add ingredient"
+                         actionListener="#{candyBarDetails.addIngredient}"
+                         action="#{candyBarDetails.redirectBackToCandyBar()}"/>
     </h:form>
     <h:link outcome="index" value="Return"/>
 </h:body>

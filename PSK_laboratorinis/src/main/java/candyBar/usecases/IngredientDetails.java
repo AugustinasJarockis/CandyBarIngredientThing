@@ -32,14 +32,4 @@ public class IngredientDetails implements  Serializable{
         Integer ingredientId = Integer.parseInt(requestParameters.get("ingredientId"));
         this.ingredient = ingredientDAO.findOne(ingredientId);
     }
-
-//    @Transactional
-//    public String updatePlayerJerseyNumber() {
-//        try{
-//            playersDAO.update(this.player);
-//        } catch (OptimisticLockException e) {
-//            return "/playerDetails.xhtml?faces-redirect=true&playerId=" + this.player.getId() + "&error=optimistic-lock-exception";
-//        }
-//        return "players.xhtml?teamId=" + this.player.getTeam().getId() + "&faces-redirect=true";
-//    }
 }

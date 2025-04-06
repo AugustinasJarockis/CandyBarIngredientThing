@@ -10,6 +10,6 @@
     <p>Name: #{sourceContractDetails.getSourceContract().name}</p>
     <p>Country of origin: #{sourceContractDetails.getSourceContract().countryOfOrigin}</p>
     <p>Price: #{sourceContractDetails.getSourceContract().price}</p>
-    <h:link outcome="ingredientManagement" value="Return"/>
+    <h:link outcome="#{sourceContractDetails.redirectBackToIngredient()}" value="Return"/>
 </h:body>
 </html>

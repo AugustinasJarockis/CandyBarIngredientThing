@@ -47,15 +47,12 @@ public class BatisSourceContracts implements Serializable {
     public void createSourceContract(){
         sourceContractToCreate.setIngredientId(ingredient.getId());
         this.sourceContractMapper.insert(sourceContractToCreate);
-        //this.ingredient = ingredientMapper.selectByPrimaryKey(ingredient.getId());
-        //ingredient.getSourceContracts().add(sourceContractToCreate);
-        //ingredientMapper.updateByPrimaryKey(ingredient);
     }
     private void loadAllSourceContracts(Ingredient ingredient){
         this.allSourceContracts = sourceContractMapper.selectByIngredientId(ingredient.getId());
     }
 
     public String redirectBackToIngredient() {
-        return "ingredientDetails?faces-redirect=true&amp;ingredientId=" + ingredient.getId();
+        return "/myBatis/ingredientDetails?faces-redirect=true&amp;ingredientId=" + ingredient.getId();
     }
 }

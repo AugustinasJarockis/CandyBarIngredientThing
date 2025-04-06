@@ -22,7 +22,6 @@
         </table>
         <table schema="public" tableName="INGREDIENT">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
-<!--            <ignoreColumn column="opt_lock_version" />-->
         </table>
         <table schema="public" tableName="SOURCE_CONTRACT">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />

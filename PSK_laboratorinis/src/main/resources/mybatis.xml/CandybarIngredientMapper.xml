@@ -24,7 +24,7 @@
         AND INGREDIENTS_ID=#{ingredientId}
     </delete>
 
-    <select id="getIngredients" resultMap="CandybarResultMap">
+    <select id="getIngredients" resultMap="IngredientResultMap">
         SELECT
         i.id AS id, i.name AS name
         FROM PUBLIC.CANDYBAR AS  c
@@ -34,7 +34,7 @@
         AND c.id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="getCandybars" resultMap="IngredientResultMap">
+    <select id="getCandybars" resultMap="CandybarResultMap">
         SELECT
         c.id AS id, c.username AS username
         FROM PUBLIC.INGREDIENT AS  i

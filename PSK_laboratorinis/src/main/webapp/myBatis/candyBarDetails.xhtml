@@ -20,7 +20,7 @@
         </h:selectOneMenu>
         <h:commandButton value="Add ingredient"
                          actionListener="#{batisCandyBarDetails.addIngredient}"
-                         action="/myBatis/candyBarManagement?faces-redirect=true"/>
+                         action="#{batisCandyBarDetails.redirectBackToCandyBar()}"/>
     </h:form>
     <h:link outcome="/myBatis/candyBarManagement" value="Return"/>
 </h:body>

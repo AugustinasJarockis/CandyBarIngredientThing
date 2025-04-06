@@ -43,8 +43,16 @@ public class BatisCandyBarDetails implements Serializable {
         this.candyBar = candyBarsMapper.selectByPrimaryKey(candyBarId);
 
         List<Ingredient> allIngredients = ingredientMapper.selectAll();
+        List<Ingredient> candyBarIngredient = candybarIngredientMapper.getIngredients(candyBarId);
         for (Ingredient ingredient : allIngredients) {
-            if (!candyBar.getIngredients().contains(ingredient)) {
+            boolean alreadyPartOf = false;
+            for (Ingredient existingIngredient : candyBarIngredient) {
+                if (existingIngredient.getId().equals(ingredient.getId())) {
+                    alreadyPartOf = true;
+                    break;
+                }
+            }
+            if (!alreadyPartOf) {
                 addableIngredients.add(new SelectItem(ingredient.getId(), ingredient.getName()));
             }
         }
@@ -60,5 +68,9 @@ public class BatisCandyBarDetails implements Serializable {
     @Transactional
     public List<Ingredient> getIngredients() {
         return candybarIngredientMapper.getIngredients(candyBar.getId());
+    }
+
+    public String redirectBackToCandyBar() {
+        return "/myBatis/candyBarDetails?faces-redirect=true&amp;candyBarId=" + candyBar.getId();
     }
 }

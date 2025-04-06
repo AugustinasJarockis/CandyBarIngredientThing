@@ -29,4 +29,8 @@ public class SourceContractDetails implements Serializable {
         Integer sourceContractId = Integer.parseInt(requestParameters.get("contractId"));
         this.sourceContract = sourceContractsDAO.findOne(sourceContractId);
     }
+
+    public String redirectBackToIngredient() {
+        return "ingredientDetails?faces-redirect=true&amp;ingredientId=" + sourceContract.getIngredient().getId();
+    }
 }

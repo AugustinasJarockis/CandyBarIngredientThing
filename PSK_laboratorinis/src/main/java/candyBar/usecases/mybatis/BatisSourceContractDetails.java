@@ -28,4 +28,8 @@ public class BatisSourceContractDetails implements Serializable {
         Integer sourceContractId = Integer.parseInt(requestParameters.get("contractId"));
         this.sourceContract = sourceContractMapper.selectByPrimaryKey(sourceContractId);
     }
+
+    public String redirectBackToIngredient() {
+        return "/myBatis/ingredientDetails?faces-redirect=true&amp;ingredientId=" + sourceContract.getIngredientId();
+    }
 }

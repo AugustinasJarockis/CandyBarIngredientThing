@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -47,11 +46,6 @@ public class SourceContracts implements Serializable {
     @Transactional
     public void createSourceContract(){
         this.sourceContractsDAO.persist(sourceContractToCreate);
-
-//        Map<String, String> requestParameters =
-//                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//        Integer ingredientId = Integer.parseInt(requestParameters.get("ingredientId"));
-        //Hibernate.initialize(ingredient.getSourceContracts());
         this.ingredient = ingredientsDAO.findOne(ingredient.getId());
         ingredient.getSourceContracts().add(sourceContractToCreate);
         ingredientsDAO.update(ingredient);

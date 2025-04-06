@@ -34,7 +34,6 @@ public class CandyBarDetails implements Serializable {
     private String SelectedIngredient;
     @PostConstruct
     private void init() {
-        System.out.println("CandyBarsDetails INIT CALLED");
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer candyBarId = Integer.parseInt(requestParameters.get("candyBarId"));
@@ -54,5 +53,9 @@ public class CandyBarDetails implements Serializable {
         Ingredient ingredientToAdd = ingredientsDAO.findOne(selectedId);
         candyBar.getIngredients().add(ingredientToAdd);
         candyBarsDAO.merge(candyBar);
+    }
+
+    public String redirectBackToCandyBar() {
+        return "candyBarDetails?faces-redirect=true&amp;candyBarId=" + candyBar.getId();
     }
 }

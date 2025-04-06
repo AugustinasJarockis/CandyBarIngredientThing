@@ -10,6 +10,6 @@
     <p>Name: #{batisSourceContractDetails.getSourceContract().name}</p>
     <p>Country of origin: #{batisSourceContractDetails.getSourceContract().countryOfOrigin}</p>
     <p>Price: #{batisSourceContractDetails.getSourceContract().price}</p>
-    <h:link outcome="/myBatis/ingredientManagement" value="Return"/>
+    <h:link outcome="#{batisSourceContractDetails.redirectBackToIngredient()}" value="Return"/>
 </h:body>
 </html>
