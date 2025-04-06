@@ -4,8 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="lt.vu.mybatis.model.Team" alias="Team"/>
-        <typeAlias type="lt.vu.mybatis.model.Player" alias="Player"/>
+        <typeAlias type="candyBar.mybatis.model.CandyBar" alias="CandyBar"/>
+        <typeAlias type="candyBar.mybatis.model.Ingredient" alias="Ingredient"/>
+        <typeAlias type="candyBar.mybatis.model.SourceContract" alias="SourceContract"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -16,7 +17,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis.xml/TeamMapper.xml"/>
-        <mapper resource="mybatis.xml/PlayerMapper.xml"/>
+        <mapper resource="mybatis.xml/CandyBarMapper.xml"/>
+        <mapper resource="mybatis.xml/IngredientMapper.xml"/>
+        <mapper resource="mybatis.xml/SourceContractMapper.xml"/>
     </mappers>
 </configuration>

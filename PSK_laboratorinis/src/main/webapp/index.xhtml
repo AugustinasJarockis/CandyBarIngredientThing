@@ -7,16 +7,18 @@
 <h:head/>
 <h:body>
     <p>#{pirmasKomponentas.sakykLabas()}</p>
-    <h2>Teams:</h2>
+    <h2>Candy bar selection:</h2>
     <ol>
-        <ui:repeat value="#{teams.allTeams}" var="team">
-            <li><h:link value="#{team.name}" outcome="players?teamId=#{team.id}" /></li>
+        <ui:repeat value="#{candyBars.allCandyBars}" var="candyBar">
+            <li><h:link value="#{candyBar.name}" outcome="candyBarDetails?candyBarId=#{candyBar.id}" /></li>
         </ui:repeat>
     </ol>
     <h:form>
-        <h:inputText value="#{teams.teamToCreate.name}" required="true" />
-        <h:commandButton value="Add new team" actionListener="#{teams.createTeam}" action="index?faces-redirect=true"/>
+        <h:inputText value="#{candyBars.candyBarToCreate.name}" required="true" />
+        <h:commandButton value="Add new candy bar" actionListener="#{candyBars.createCandyBar}" action="index?faces-redirect=true"/>
     </h:form>
+    <h:link outcome="ingredientManagement" value="Manage ingredients"/>
+    <br/>
     <h:link outcome="myBatis/teams" value="MyBatis implementation"/>
 </h:body>
 </html>

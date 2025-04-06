@@ -1,12 +1,20 @@
 package candyBar.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
-public class Ingredients {
+@Entity
+@Table(name = "INGREDIENT")
+@Getter
+@Setter
+public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Integer id;
 
     @Size(max = 50)
@@ -17,5 +25,5 @@ public class Ingredients {
     private Set<CandyBar> presentIn;
 
     @OneToMany
-    private Country sourceCountry;
+    private Set<SourceContract> sourceContracts;
 }

@@ -5,15 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Set;
 
 @Entity
-@Table(name = "CANDYBAR")
+@Table(name = "SOURCE_CONTRACT")
 @Getter
 @Setter
-public class CandyBar implements Serializable {
-
+public class SourceContract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,6 +19,14 @@ public class CandyBar implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @ManyToMany
-    private Set<Ingredient> ingredients;
+    @Size(max = 75)
+    @Column(name = "COUNTRY_OF_ORIGIN")
+    private String countryOfOrigin;
+
+    @Size(max = 20)
+    @Column(name = "PRICE")
+    private String price;
+
+    @ManyToOne
+    private Ingredient ingredient;
 }
