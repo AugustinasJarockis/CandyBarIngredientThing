@@ -1,9 +1,10 @@
-package candyBar.usecases;
+package candyBar.usecases.mybatis;
 
-import candyBar.entities.CandyBar;
-import candyBar.entities.Ingredient;
-import candyBar.persistence.CandyBarsDAO;
-import candyBar.persistence.IngredientsDAO;
+import candyBar.mybatis.dao.CandybarIngredientMapper;
+import candyBar.mybatis.dao.CandybarMapper;
+import candyBar.mybatis.dao.IngredientMapper;
+import candyBar.mybatis.model.Candybar;
+import candyBar.mybatis.model.Ingredient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,24 +24,25 @@ import java.util.Map;
 @Named
 @Getter
 @Setter
-public class CandyBarDetails implements Serializable {
-    private CandyBar candyBar;
+public class BatisCandyBarDetails implements Serializable {
+    private Candybar candyBar;
     private ArrayList<SelectItem> addableIngredients = new ArrayList<>();
     @Inject
-    private CandyBarsDAO candyBarsDAO;
+    private CandybarMapper candyBarsMapper;
     @Inject
-    private IngredientsDAO ingredientsDAO;
+    private IngredientMapper ingredientMapper;
+    @Inject
+    private CandybarIngredientMapper candybarIngredientMapper;
     @Getter @Setter
     private String SelectedIngredient;
     @PostConstruct
     private void init() {
-        System.out.println("CandyBarsDetails INIT CALLED");
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer candyBarId = Integer.parseInt(requestParameters.get("candyBarId"));
-        this.candyBar = candyBarsDAO.findOne(candyBarId);
+        this.candyBar = candyBarsMapper.selectByPrimaryKey(candyBarId);
 
-        List<Ingredient> allIngredients = ingredientsDAO.loadAll();
+        List<Ingredient> allIngredients = ingredientMapper.selectAll();
         for (Ingredient ingredient : allIngredients) {
             if (!candyBar.getIngredients().contains(ingredient)) {
                 addableIngredients.add(new SelectItem(ingredient.getId(), ingredient.getName()));
@@ -51,8 +53,12 @@ public class CandyBarDetails implements Serializable {
     @Transactional
     public void addIngredient(){
         int selectedId = Integer.parseInt(this.SelectedIngredient);
-        Ingredient ingredientToAdd = ingredientsDAO.findOne(selectedId);
-        candyBar.getIngredients().add(ingredientToAdd);
-        candyBarsDAO.merge(candyBar);
+        Ingredient ingredientToAdd = ingredientMapper.selectByPrimaryKey(selectedId);
+        candybarIngredientMapper.addIngredient(candyBar.getId(), ingredientToAdd.getId());
+    }
+
+    @Transactional
+    public List<Ingredient> getIngredients() {
+        return candybarIngredientMapper.getIngredients(candyBar.getId());
     }
 }

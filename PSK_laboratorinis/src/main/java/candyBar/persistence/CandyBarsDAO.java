@@ -10,7 +10,7 @@ import java.util.List;
 @ApplicationScoped
 public class CandyBarsDAO {
     @Inject
-    private javax.persistence.EntityManager em;
+    private EntityManager em;
     public void merge(CandyBar candyBar) {
         this.em.merge(candyBar);
     }

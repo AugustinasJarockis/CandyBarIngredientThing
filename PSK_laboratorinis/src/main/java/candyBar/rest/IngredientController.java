@@ -16,7 +16,8 @@ import javax.ws.rs.core.Response;
 @Path("/ingredientDetails")
 public class IngredientController {
     @Inject
-    @Setter @Getter
+    @Setter
+    @Getter
     private IngredientsDAO ingredientsDAO;
 
     @Path("/{id}")
@@ -35,25 +36,4 @@ public class IngredientController {
 
         return Response.ok(ingredientDTO).build();
     }
-
-//    @Path("/{id}")
-//    @PUT
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Transactional
-//    public Response update(
-//            @PathParam("id") final Integer playerId,
-//            PlayerDto playerData) {
-//        try {
-//            Player existingPlayer = ingredientsDAO.findOne(playerId);
-//            if (existingPlayer == null) {
-//                return Response.status(Response.Status.NOT_FOUND).build();
-//            }
-//            existingPlayer.setName(playerData.getName());
-//            existingPlayer.setJerseyNumber(playerData.getJerseyNumber());
-//            ingredientsDAO.update(existingPlayer);
-//            return Response.ok().build();
-//        } catch (OptimisticLockException ole) {
-//            return Response.status(Response.Status.CONFLICT).build();
-//        }
-//    }
 }

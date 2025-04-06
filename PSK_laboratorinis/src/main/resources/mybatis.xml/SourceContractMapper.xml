@@ -65,4 +65,9 @@
     select ID, COUNTRY_OF_ORIGIN, NAME, PRICE, INGREDIENT_ID
     from PUBLIC.SOURCE_CONTRACT
   </select>
+  <select id="selectByIngredientId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, COUNTRY_OF_ORIGIN, NAME, PRICE, INGREDIENT_ID
+    from PUBLIC.SOURCE_CONTRACT
+    where INGREDIENT_ID = #{ingredientId,jdbcType=INTEGER}
+  </select>
 </mapper>
