@@ -26,7 +26,6 @@ public class IngredientDetails implements  Serializable{
 
     @PostConstruct
     private void init() {
-        System.out.println("IngredientDetails INIT CALLED");
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer ingredientId = Integer.parseInt(requestParameters.get("ingredientId"));
