@@ -14,4 +14,6 @@ public interface CandybarIngredientMapper {
                       @Param("ingredientsId") int ingredientsId);
     List<Ingredient> getIngredients(int candybarId);
     List<Candybar> getCandybars(int ingredientId);
+
+    List<Candybar> getCandybarsWithIngredients();
 }

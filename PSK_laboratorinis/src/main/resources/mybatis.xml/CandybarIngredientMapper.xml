@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="candyBar.mybatis.dao.CandybarIngredientMapper">
     <resultMap id="CandybarResultMap" type="candyBar.mybatis.model.Candybar">
-        <id column="ID" jdbcType="INTEGER" property="id"/>
-        <result column="NAME" jdbcType="VARCHAR" property="name"/>
-        <collection javaType="ArrayList" property="ingredients" resultMap="IngredientResultMap" />
+        <id column="candyBarId" jdbcType="INTEGER" property="id"/>
+        <result column="candyBarName" jdbcType="VARCHAR" property="name"/>
+        <collection javaType="ArrayList" property="ingredients" resultMap="IngredientResultMap"/>
     </resultMap>
 
     <resultMap id="IngredientResultMap" type="candyBar.mybatis.model.Ingredient">
-        <id column="ID" jdbcType="INTEGER" property="id"/>
-        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <id column="ingredientId" jdbcType="INTEGER" property="id"/>
+        <result column="ingredientName" jdbcType="VARCHAR" property="name"/>
         <collection javaType="ArrayList" property="presentIn" resultMap="CandybarResultMap" />
     </resultMap>
 
@@ -26,21 +26,29 @@
 
     <select id="getIngredients" resultMap="IngredientResultMap">
         SELECT
-        i.id AS id, i.name AS name
+        i.ID AS ingredientId, i.NAME AS ingredientName
         FROM PUBLIC.CANDYBAR AS  c
-        LEFT JOIN PUBLIC.CANDYBAR_INGREDIENT AS ci ON c.id = ci.CANDYBAR_ID
-        LEFT JOIN PUBLIC.INGREDIENT AS i ON i.id = ci.INGREDIENTS_ID
+        LEFT JOIN PUBLIC.CANDYBAR_INGREDIENT AS ci ON c.ID = ci.CANDYBAR_ID
+        LEFT JOIN PUBLIC.INGREDIENT AS i ON i.ID = ci.INGREDIENTS_ID
         WHERE 1=1
-        AND c.id = #{id,jdbcType=INTEGER}
+        AND c.ID = #{id,jdbcType=INTEGER}
     </select>
 
     <select id="getCandybars" resultMap="CandybarResultMap">
         SELECT
-        c.id AS id, c.username AS username
+        c.ID AS candyBarId, c.NAME AS candyBarName
         FROM PUBLIC.INGREDIENT AS  i
-        LEFT JOIN PUBLIC.CANDYBAR_INGREDIENT AS ci ON i.id = ci.INGREDIENTS_ID
-        LEFT JOIN PUBLIC.CANDYBAR AS c ON c.id = ci.CANDYBAR_ID
+        LEFT JOIN PUBLIC.CANDYBAR_INGREDIENT AS ci ON i.ID = ci.INGREDIENTS_ID
+        LEFT JOIN PUBLIC.CANDYBAR AS c ON c.ID = ci.CANDYBAR_ID
         WHERE 1=1
-        AND i.id = #{id,jdbcType=INTEGER}
+        AND i.ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getCandybarsWithIngredients" resultMap="CandybarResultMap">
+        SELECT
+            c.ID AS candyBarId, c.NAME AS candyBarName, i.ID AS ingredientId, i.NAME AS ingredientName
+        FROM PUBLIC.CANDYBAR AS c
+                 LEFT JOIN PUBLIC.CANDYBAR_INGREDIENT AS ci ON c.ID = ci.CANDYBAR_ID
+                 LEFT JOIN PUBLIC.INGREDIENT AS  i ON i.ID = ci.INGREDIENTS_ID
     </select>
 </mapper>

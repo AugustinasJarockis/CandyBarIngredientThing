@@ -10,7 +10,10 @@
     <h2>Candy bar selection:</h2>
     <ol>
         <ui:repeat value="#{candyBars.allCandyBars}" var="candyBar">
-            <li><h:link value="#{candyBar.name}" outcome="candyBarDetails?candyBarId=#{candyBar.id}" /></li>
+            <li>
+                <h:link value="#{candyBar.name}" outcome="candyBarDetails?candyBarId=#{candyBar.id}" />
+                <span>#{candyBar.ingredients.size()}</span>
+            </li>
         </ui:repeat>
     </ol>
     <h:form>

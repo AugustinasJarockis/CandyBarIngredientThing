@@ -24,6 +24,6 @@ public class Ingredient {
     @ManyToMany
     private Set<CandyBar> presentIn;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ingredient")
     private Set<SourceContract> sourceContracts;
 }

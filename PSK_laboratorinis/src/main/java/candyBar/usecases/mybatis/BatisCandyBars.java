@@ -1,5 +1,6 @@
 package candyBar.usecases.mybatis;
 
+import candyBar.mybatis.dao.CandybarIngredientMapper;
 import candyBar.mybatis.dao.CandybarMapper;
 import candyBar.mybatis.model.Candybar;
 import lombok.Getter;
@@ -15,6 +16,8 @@ import java.util.List;
 public class BatisCandyBars {
     @Inject
     private CandybarMapper candyBarMapper;
+    @Inject
+    private CandybarIngredientMapper candybarIngredientMapper;
     @Getter
     private List<Candybar> allCandyBars;
 
@@ -30,6 +33,6 @@ public class BatisCandyBars {
         this.candyBarMapper.insert(candyBarToCreate);
     }
     private void loadAllCandyBars(){
-        this.allCandyBars = candyBarMapper.selectAll();
+        this.allCandyBars = candybarIngredientMapper.getCandybarsWithIngredients();
     }
 }

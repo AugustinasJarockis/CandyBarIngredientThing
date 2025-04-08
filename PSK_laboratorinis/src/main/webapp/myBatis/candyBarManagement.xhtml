@@ -9,7 +9,10 @@
     <h2>Candy bar selection:</h2>
     <ol>
         <ui:repeat value="#{batisCandyBars.allCandyBars}" var="candyBar">
-            <li><h:link value="#{candyBar.name}" outcome="/myBatis/candyBarDetails?candyBarId=#{candyBar.id}" /></li>
+            <li>
+                <h:link value="#{candyBar.name}" outcome="/myBatis/candyBarDetails?candyBarId=#{candyBar.id}" />
+                <span>#{candyBar.getIngredients().size()}</span>
+            </li>
         </ui:repeat>
     </ol>
     <h:form>
