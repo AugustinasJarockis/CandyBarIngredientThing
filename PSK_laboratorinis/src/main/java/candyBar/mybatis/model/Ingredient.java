@@ -21,7 +21,6 @@ public class Ingredient {
      * @mbg.generated Sun Apr 06 16:09:44 EEST 2025
      */
     private String name;
-    private List<Candybar> presentIn = new ArrayList<>();
     private List<SourceContract> sourceContracts = new ArrayList<>();
 
     /**

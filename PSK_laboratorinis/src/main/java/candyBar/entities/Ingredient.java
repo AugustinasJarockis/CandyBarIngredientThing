@@ -21,9 +21,6 @@ public class Ingredient {
     @Column(name = "NAME")
     private String name;
 
-    @ManyToMany
-    private Set<CandyBar> presentIn;
-
     @OneToMany(mappedBy = "ingredient")
     private Set<SourceContract> sourceContracts;
 }
