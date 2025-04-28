@@ -5,8 +5,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
 <h:head>
+    #{visitCounter.updateVisitCount()}
 </h:head>
 <h:body>
+    <p>Visit count: #{visitCounter.visitCount}</p>
     <h2>Candy bar selection:</h2>
     <ol>
         <ui:repeat value="#{candyBars.allCandyBars}" var="candyBar">

@@ -21,6 +21,7 @@ public class Ingredient {
      * @mbg.generated Sun Apr 06 16:09:44 EEST 2025
      */
     private String name;
+    private List<Ingredient> presentIn = new ArrayList<>();
     private List<SourceContract> sourceContracts = new ArrayList<>();
 
     /**
@@ -70,7 +71,6 @@ public class Ingredient {
     public void setName(String name) {
         this.name = name;
     }
-
     public List<SourceContract> getSourceContracts() {
         return this.sourceContracts;
     }
